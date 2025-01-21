@@ -1,14 +1,13 @@
 import React, {Component} from "react";
 import ClassBasedComponent from "./components/ClassBasedComponent.jsx";
 import FunctionalBasedComponent from "./components/FunctionalBasedComponent.jsx";
+import FormBasedComponent from "./components/FormBasedComponent.jsx";
 
 class Application extends Component {
 
     constructor(props) {
         super(props);
     }
-
-
 
     render() {
         let name = 'Lennox';
@@ -19,6 +18,7 @@ class Application extends Component {
                 <span>This</span>
                 <ClassBasedComponent />
                 <FunctionalBasedComponent />
+                <FormBasedComponent />
             </div>
         );
     }
