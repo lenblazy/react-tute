@@ -8,11 +8,14 @@ const Child = () => {
 }
 
 function FunctionalBasedComponent() {
+
+    const parentComponentHandler = () => console.log("Hello from Parent");
+
     return (
         <div>
             <Child />
             Hello from FunctionalBasedComponent
-            <PropsExample flag={true} data="data as prop"/>
+            <PropsExample parentComponentHandler={parentComponentHandler} flag={true} data="data as prop"/>
         </div>
     );
 }
