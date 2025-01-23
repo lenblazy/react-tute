@@ -12,11 +12,16 @@ class FormBasedComponent extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const formData = this.state;
+        console.log(formData);
         this.setState(prevState => ({
             ...prevState,
             finalFormData : {
                 ...prevState.finalFormData,
                 ...formData
+            },
+            formData: {
+                name: "",
+                age: 0,
             }
         }))
     };
@@ -42,6 +47,7 @@ class FormBasedComponent extends Component {
     };
 
     render() {
+        console.log(this.state.finalFormData);
         return (
             <div>
                 <form onSubmit={this.handleSubmit} >
@@ -49,8 +55,15 @@ class FormBasedComponent extends Component {
                     <input name="age" type="number" placeholder="Age"  value={this.state.formData.age} onChange={this.handleAgeChange} />
                     <button type="submit" aria-label="submit">Submit</button>
                 </form>
+                {
 
-                final data is {this.state.finalFormData.name} and {this.state.finalFormData.age}
+                    this.state.finalFormData && Object.keys(this.state.finalFormData).length > 0 && (
+                        <p>
+                            final data is {this.state.finalFormData.name} and {this.state.finalFormData.age}
+                        </p>
+                    )
+                }
+
             </div>
         );
     }
