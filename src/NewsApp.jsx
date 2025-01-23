@@ -1,4 +1,5 @@
 import React, { Component, useState, useEffect } from "react";
+import Loading from "./components/Loading.jsx";
 
 const NewsApp = () => {
 
@@ -6,15 +7,14 @@ const NewsApp = () => {
     const [news, setNews] = useState([]);
     const [searchQuery, setSearchQuery] = useState('10');
     const [url, setUrl] = useState(`https://api.randomuser.me/?nat=KE&results=10`);
+    const [loading, setLoading] = useState(true);
 
     const fetchNews = () => {
+        setLoading(true);
         fetch(url)
             .then(res => res.json())
-            .then(data => {
-                setNews(data.results)
-            })
+            .then(data => (setNews(data.results), setLoading(false)))
             .catch(err => console.log(err));
-
     }
 
     useEffect(() => {
@@ -33,6 +33,7 @@ const NewsApp = () => {
     return (
         <div>
             <h1>News App</h1>
+            {loading ? <Loading message="Loading..." /> : ""}
             <form onSubmit={handleSubmit}>
                 <input type={'text'} value={searchQuery} onChange={handleChange} />
                 <button>Submit</button>
