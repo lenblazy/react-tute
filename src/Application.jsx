@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import ClassBasedComponent from "./components/ClassBasedComponent.jsx";
 import FunctionalBasedComponent from "./components/FunctionalBasedComponent.jsx";
-import FormBasedComponent from "./components/FormBasedComponent.jsx";
+import ApiLoaderComponent from "./components/ApiLoaderComponent.jsx";
 
 class Application extends Component {
 
@@ -18,7 +18,8 @@ class Application extends Component {
                 <span>This</span>
                 <ClassBasedComponent />
                 <FunctionalBasedComponent />
-                <FormBasedComponent />
+                <br /> <br />
+                <ApiLoaderComponent />
             </div>
         );
     }
