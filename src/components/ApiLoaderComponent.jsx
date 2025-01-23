@@ -4,14 +4,17 @@ import axios from "axios";
 class ApiLoaderComponent extends Component {
 
     state = {
-        users: []
+        users: [],
+        loading: false,
     }
 
     getUsers = () => {
+        this.setState({loading: true});
         axios('https://api.randomuser.me/?nat=KE&results=5')
             .then(res => {
                 this.setState({
-                    users: res.data.results
+                    users: res.data.results,
+                    loading: false
                 });
             })
     }
@@ -24,13 +27,15 @@ class ApiLoaderComponent extends Component {
         return (
             <div>
                 <h1>To load Api components</h1>
-                <ul style={{ listStyleType: "none" }}>
-                    { this.state.users.map(user =>
-                        (
-                            <li key={user.email}>{user.cell}</li>
-                        )
-                    )}
-                </ul>
+                {
+                    !this.state.loading ? <ul style={{listStyleType: "none"}}>
+                        {this.state.users.map(user =>
+                            (
+                                <li key={user.email}>{user.cell}</li>
+                            )
+                        )}
+                    </ul> : 'Loading...'
+                }
 
             </div>
         );
