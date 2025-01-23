@@ -9,7 +9,7 @@ class FormBasedComponent extends Component {
         finalFormData : {}
     };
 
-    handleSubmit = (event) => {
+     handleSubmit = (event) => {
         event.preventDefault();
         const formData = this.state;
         console.log(formData);

@@ -14,7 +14,7 @@ class ApiLoaderComponent extends Component {
         axios('https://api.randomuser.me/?nat=KE&results=5')
             .then(res => {
                 this.setState({
-                    users: res.data.results,
+                    users: [...this.state.users, ...res.data.results],
                     loading: false
                 });
             })
@@ -24,18 +24,36 @@ class ApiLoaderComponent extends Component {
         this.getUsers()
     }
 
+    newHandleSubmit = (event) => {
+        event.preventDefault();
+        this.getUsers();
+    }
+
     render() {
+        const {loading, users} = this.state;
+
         return (
             <div>
                 <h1>To load Api components</h1>
                 {
-                    !this.state.loading ? <ul style={{listStyleType: "none"}}>
-                        {this.state.users.map(user =>
-                            (
-                                <li key={user.email}>{user.cell}</li>
-                            )
-                        )}
-                    </ul> : <Loading message="Loading data..." />
+                    !loading ? <div>
+                            <form onSubmit={this.newHandleSubmit}>
+                                <input type={'submit'} value={'load users'}/>
+                            </form>
+
+                            <ul style={{listStyleType: "none"}}>
+                                {users.map(user =>
+                                    (
+                                        <li key={user.email}>
+                                            <h4>{user.name.first}</h4>
+                                            <p>{user.email}</p>
+                                            <hr/>
+                                        </li>
+                                    )
+                                )}
+                            </ul>
+                        </div>
+                        : <Loading message="Loading data..."/>
                 }
 
             </div>
