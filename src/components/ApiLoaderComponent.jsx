@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import axios from "axios";
+import Loading from "./Loading.jsx";
 
 class ApiLoaderComponent extends Component {
 
@@ -34,7 +35,7 @@ class ApiLoaderComponent extends Component {
                                 <li key={user.email}>{user.cell}</li>
                             )
                         )}
-                    </ul> : 'Loading...'
+                    </ul> : <Loading message="Loading data..." />
                 }
 
             </div>
