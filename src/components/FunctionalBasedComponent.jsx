@@ -1,4 +1,4 @@
-import React, {useContext, useReducer} from "react";
+import React, {useContext, useEffect, useReducer, useRef} from "react";
 import PropsExample from "../PropExample/index.jsx";
 import NewChild from "../PropExample/newChild.jsx";
 import {Context} from "../CounterApp.jsx";
@@ -42,6 +42,18 @@ function FunctionalBasedComponent() {
     const getValueFromContext = useContext(Context);
     console.log(getValueFromContext);
 
+    const inputRef = useRef(null);
+    console.log(inputRef);
+
+    const handleFocus = () => {
+        console.log('inputRef.current');
+        inputRef.current.focus();
+    }
+
+    // useEffect(() => {
+    //     inputRef.current.focus();
+    // }, [])
+
     return (
         <div>
             Hello from FunctionalBasedComponent
@@ -51,6 +63,9 @@ function FunctionalBasedComponent() {
             <button style={{backgroundColor: getValueFromContext}}>Click me</button>
             <br /><br />
             <button onClick={() => dispatch({type: 'TOGGLE_BUTTON'})}>Toggle</button>
+            <hr />
+            <input name={'name'} placeholder={'Name'} type="text"/>
+            <button onClick={handleFocus}>Click</button>
         </div>
     );
 }
