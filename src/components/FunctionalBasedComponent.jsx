@@ -2,6 +2,7 @@ import React, {useContext, useEffect, useReducer, useRef} from "react";
 import PropsExample from "../PropExample/index.jsx";
 import NewChild from "../PropExample/newChild.jsx";
 import {Context} from "../CounterApp.jsx";
+import UseFetch from "../customHook/index.jsx";
 
 //useState
 //useEffect
@@ -46,13 +47,15 @@ function FunctionalBasedComponent() {
     console.log(inputRef);
 
     const handleFocus = () => {
-        console.log('inputRef.current');
         inputRef.current.focus();
     }
 
     // useEffect(() => {
     //     inputRef.current.focus();
     // }, [])
+
+    const {data} = UseFetch('https://jsonplaceholder.typicode.com/posts');
+    console.log(`fetch data = ${data}`);
 
     return (
         <div>
