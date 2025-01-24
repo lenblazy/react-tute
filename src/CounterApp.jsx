@@ -1,4 +1,5 @@
-import { Component, useState, useEffect } from "react";
+import {Component, useState, useEffect, createContext} from "react";
+import FunctionalBasedComponent from "./components/FunctionalBasedComponent.jsx";
 
 // class CounterApp extends Component {
 //
@@ -30,6 +31,9 @@ import { Component, useState, useEffect } from "react";
 //     }
 // }
 
+export const Context = createContext('light');
+console.log(Context);
+
 const CounterApp = () => {
 
     const [count, setCount] = useState(0); //initial state
@@ -56,10 +60,13 @@ const CounterApp = () => {
     }) //component will unmount
 
     return (
-        <div>
-            <h1>Counter App</h1>
-            <button onClick={increment}>Clicked {count} times</button>
-        </div>
+        <Context.Provider value="green">
+            <div>
+                <h1>Counter App</h1>
+                <button onClick={increment}>Clicked {count} times</button>
+                <FunctionalBasedComponent />
+            </div>
+        </Context.Provider>
     )
 }
 
