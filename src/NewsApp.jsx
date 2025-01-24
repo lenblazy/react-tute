@@ -21,6 +21,7 @@ const NewsApp = () => {
         fetchNews();
     }, [url]);
 
+
     const handleChange = (e) => {
         setSearchQuery(e.target.value);
     }
@@ -30,19 +31,25 @@ const NewsApp = () => {
         setUrl(`https://api.randomuser.me/?nat=KE&results=${searchQuery}`);
     }
 
+    const showLoading = () => ( loading ? <Loading message="Loading..." /> : "")
+
+    const searchForm = () => (
+        <form onSubmit={handleSubmit}>
+            <input type={'text'} value={searchQuery} onChange={handleChange}/>
+            <button>Submit</button>
+        </form>
+    )
+
+    const showNews = () => (
+        news.map((item, idx) => (<p key={idx}>{item.name.first}</p>))
+    );
+
     return (
         <div>
             <h1>News App</h1>
-            {loading ? <Loading message="Loading..." /> : ""}
-            <form onSubmit={handleSubmit}>
-                <input type={'text'} value={searchQuery} onChange={handleChange} />
-                <button>Submit</button>
-            </form>
-            {
-                news.map((item, idx) => (
-                    <p key={idx}>{item.name.first}</p>
-                ))
-            }
+            { showLoading() }
+            { searchForm() }
+            { showNews() }
         </div>
     )
 }

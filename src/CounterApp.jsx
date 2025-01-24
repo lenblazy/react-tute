@@ -32,15 +32,28 @@ import { Component, useState, useEffect } from "react";
 
 const CounterApp = () => {
 
-    const [count, setCount] = useState(0);
-
-    useEffect(() => {
-        document.title = `Clicked ${count} times`;
-    })
+    const [count, setCount] = useState(0); //initial state
 
     const increment = () => {
         setCount(count + 1);
     }
+
+    useEffect(() => {
+        document.title = `Clicked ${count} times`;
+        console.log("Effect is called only once on page load");
+    },[]) //component did mount
+
+    useEffect(() => {
+        document.title = `Clicked ${count} times`;
+        console.log("Component did update");
+    },[count]) //component did update
+
+    //not working
+    useEffect(() => {
+        return () => {
+            console.log("Component will unmount");
+        }
+    }) //component will unmount
 
     return (
         <div>

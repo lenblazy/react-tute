@@ -3,8 +3,9 @@ import './index.css'
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import NewsApp from "./NewsApp.jsx";
+import CounterApp from "./CounterApp.jsx";
 
 createRoot(document.getElementById('root')).render(
-    // <CounterApp />
-    <NewsApp />
+    <CounterApp />
+    // <NewsApp />
 )
