@@ -48,6 +48,7 @@ function FunctionalBasedComponent() {
 
     const handleFocus = () => {
         inputRef.current.focus();
+        throw Error("Kumanisha")
     }
 
     // useEffect(() => {
